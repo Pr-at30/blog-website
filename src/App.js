@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import CreatePost from './pages/CreatePost';
+import { auth } from './firebase-config';
+import { signOut } from 'firebase/auth';
+
 
 function App() {
+
+  // state for isLoggedIn
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // handle signout
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+      localStorage.clear();
+
+      // redirect to login page
+      window.location.pathname = '/login';   // Can't use use navigate here because it's outside of the React Router
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav>
+        <div className='left-links'>
+          <Link to="/">Blog Site</Link>
+        </div>
+        <div className='right-links'>
+          <Link to="/createpost">Create Post</Link>
+          {isLoggedIn ? <button className="signout" onClick={handleSignOut}>Sign Out</button>:<Link to="/login">Login</Link> }
+        </div>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+      </Routes>
+
+      <footer>
+        <div className="footer">&copy; Developed by Pratyush Kumar Jena </div>
+      </footer>
+    </Router>
   );
 }
 
