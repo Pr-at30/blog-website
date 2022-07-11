@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import CreatePost from './pages/CreatePost';
+import About from './pages/About';
 import { auth } from './firebase-config';
 import { signOut } from 'firebase/auth';
 
@@ -32,35 +33,41 @@ function App() {
   }
 
   return (
-    <Router>
-      <nav>
-        <div className='left-links'>
-          <Link to="/">Blog Site</Link>
-        </div>
-        <div className='right-links'>
-          <Link to="/createpost">Create Post</Link>
-          {isLoggedIn ? <button className="signout" onClick={handleSignOut}>Sign Out</button> : <Link to="/login">Login</Link>}
-        </div>
-      </nav>
+    <>
+      <Router>
+        <nav>
+          <div className='left-links'>
+            <Link to="/">Blog Site</Link>
+          </div>
+          <div className='right-links'>
+            {isLoggedIn && <Link to="/createpost">Create Post</Link>}
+            {isLoggedIn ? <button className="signout" onClick={handleSignOut}>Sign Out</button> : <Link to="/login">Login</Link>}
+            <Link to="/about">About</Link>
+          </div>
+        </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        
-        <Route path="/createpost"
-          element={<CreatePost
-          title={title}
-          setTitle={setTitle}
-          content ={content}
-          setContent={setContent}
-        />} />
-        
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
 
-      <footer>
-        <div className="footer">&copy; Developed by Pratyush Kumar Jena </div>
-      </footer>
-    </Router>
+          <Route path="/createpost"
+            element={<CreatePost
+              title={title}
+              setTitle={setTitle}
+              content={content}
+              setContent={setContent}
+              isLoggedIn={isLoggedIn}
+            />} />
+
+          <Route path="/login"
+            element=
+            {<Login
+              setIsLoggedIn={setIsLoggedIn}
+            />} />
+
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
