@@ -7,3 +7,8 @@ function Home() {
 }
 
 export default Home
+
+
+// Add two numbers
+// Language: javascript
+// Path: src\pages\Home.js

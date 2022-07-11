@@ -1,4 +1,5 @@
 import './App.scss';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 import Home from './pages/Home';
@@ -12,6 +13,12 @@ function App() {
 
   // state for isLoggedIn
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // State for Title
+  const [title, setTitle] = React.useState('')
+
+  // State for Content
+  const [content, setContent] = React.useState('')
 
   // handle signout
   const handleSignOut = () => {
@@ -32,13 +39,21 @@ function App() {
         </div>
         <div className='right-links'>
           <Link to="/createpost">Create Post</Link>
-          {isLoggedIn ? <button className="signout" onClick={handleSignOut}>Sign Out</button>:<Link to="/login">Login</Link> }
+          {isLoggedIn ? <button className="signout" onClick={handleSignOut}>Sign Out</button> : <Link to="/login">Login</Link>}
         </div>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/createpost" element={<CreatePost />} />
+        
+        <Route path="/createpost"
+          element={<CreatePost
+          title={title}
+          setTitle={setTitle}
+          content ={content}
+          setContent={setContent}
+        />} />
+        
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
       </Routes>
 
