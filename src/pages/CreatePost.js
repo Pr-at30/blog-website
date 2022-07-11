@@ -22,60 +22,60 @@ function CreatePost({ title, setTitle, content, setContent, isLoggedIn }) {
   // Create a new post
   const createPost = async (e) => {
     e.preventDefault();
-    console.log(auth);
     await addDoc(postsCollectionRef, {
       title: title,
       content: content,
       image: auth.currentUser.photoURL,
-        author: {
-      name: auth.currentUser.displayName,
-      id: auth.currentUser.uid
-    }
+      date: new Date().toLocaleDateString(),
+      author: {
+        name: auth.currentUser.displayName,
+        id: auth.currentUser.uid,
+      }
     });
 
-  // Clear the form
-  setTitle('');
-  setContent('');
+    // Clear the form
+    setTitle('');
+    setContent('');
 
-  // Navigate to the home page
-  navigate('/');
-}
+    // Navigate to the home page
+    navigate('/');
+  }
 
-return (
-  <div className={styles.cpPage}>
-    <form className={styles['login-form']} onSubmit={createPost}>
-      <h1>Create Post</h1>
+  return (
+    <div className={styles.cpPage}>
+      <form className={styles['login-form']} onSubmit={createPost}>
+        <h1>Create Post</h1>
 
-      <div className={styles['form-input-material']}>
-        <label className={styles.head}>Title</label>
-        <br></br>
-        <input
-          type="text"
-          className={styles['form-input-material']}
-          placeholder="Title..."
-          size={30}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required />
-      </div>
+        <div className={styles['form-input-material']}>
+          <label className={styles.head}>Title</label>
+          <br></br>
+          <input
+            type="text"
+            className={styles['form-input-material']}
+            placeholder="Title..."
+            size={30}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required />
+        </div>
 
-      <div className={styles['form-input-material']}>
-        <label className={styles.head}>Body</label>
-        <br></br>
-        <textarea placeholder="Content..."
-          rows={5}
-          cols={50}
-          className={styles['form-input-material']}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </div>
+        <div className={styles['form-input-material']}>
+          <label className={styles.head}>Body</label>
+          <br></br>
+          <textarea placeholder="Content..."
+            rows={5}
+            cols={50}
+            className={styles['form-input-material']}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </div>
 
-      <button className={styles["btn"]}>Create</button>
-    </form>
+        <button className={styles["btn"]}>Create</button>
+      </form>
 
-  </div>
-)
+    </div>
+  )
 }
 
 export default CreatePost

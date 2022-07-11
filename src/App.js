@@ -13,7 +13,7 @@ import { signOut } from 'firebase/auth';
 function App() {
 
   // state for isLoggedIn
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'));
 
   // State for Title
   const [title, setTitle] = React.useState('')

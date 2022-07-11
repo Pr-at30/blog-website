@@ -37,13 +37,54 @@ h2 {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  padding:  0.5rem;
+  padding: 0.5rem;
   margin-right: 0.1rem;
 }
 
 .by {
   margin: 1rem 0rem 0rem -0.5rem;
-  display: flex;  
+  display: flex;
   align-items: center;
   // justify-content: center;
+}
+
+// Style dae and time
+.date {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Remove style from button
+.deletebtn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+  border-radius: 5px;
+  background: #333;
+  color: #fff;
+}
+
+// Keep the text within the card
+.text {
+  width: auto;
+  word-wrap: break-word;
+}
+
+.noPosts {
+  // Center the text in the view when there are no posts
+  text-align: center;
+  margin: 15rem;
+  padding: 30px;
+
+  color: #333;
+  font-weight: 700;
+  // increase size
+  font-size: 4rem;
 }

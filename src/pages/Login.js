@@ -17,6 +17,7 @@ function Login({ setIsLoggedIn }) {
         setIsLoggedIn(true);
         navigate('/');
       })
+      .catch((error) => console.log(error.message));
   };
 
   return (

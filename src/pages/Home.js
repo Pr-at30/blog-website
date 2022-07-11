@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { getDocs, collection } from 'firebase/firestore'
-import { db } from '../firebase-config'
+import { getDocs, collection, doc, deleteDoc } from 'firebase/firestore'
+import { auth, db } from '../firebase-config'
 import styles from './Home.module.scss'
+import { isEmpty } from '@firebase/util';
 
 function Home({ isLoggedIn }) {
 
   const [postsLists, setPostsList] = useState([]);
+  const [chkDel, setChkDel] = useState(false);
 
   // Doc refrence for the post
   const postsCollectionRef = collection(db, "posts");
@@ -15,43 +17,56 @@ function Home({ isLoggedIn }) {
     const getPosts = async () => {
       const posts = await getDocs(postsCollectionRef);
       console.log(posts);
-      setPostsList(posts.docs.map((doc) => ({ ...doc.data(), id: doc.id, img: doc.data().img, key: doc.id })));
+      setPostsList(posts.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+        img: doc.data().img,
+        key: doc.id,
+        date: doc.data().date,
+      })));
     };
 
     getPosts();
-  }, []);
+  }, [chkDel]);
+
+  // Delete a post
+  const deletePost = async (id) => {
+    await (deleteDoc(doc(db, "posts", id)));
+    setChkDel(!chkDel);
+  }
 
   return (
     <>
-      <div className={styles.homePage}>
-        {postsLists.map((post) => {
-          return (
-            <div className={styles.card}>
-              <div className={styles.content}>
-                <h2>{post.title}</h2>
-                <p>{post.content}</p>
-                <div className={styles.by}>
-                  <img className={styles.logo} src={post.image} alt="post" />
-                  <span className={styles.author}> {post.author.name}</span>
+      { isEmpty(postsLists) ? <div className={styles.noPosts}>No posts yet</div> :
+        <div className={styles.homePage}>
+          {postsLists.map((post) => {
+            return (
+              <div className={styles.card}>
+                <div className={styles.content}>
+
+                  <div className={styles.top}>
+                    <h2>{post.title}</h2>
+                    {isLoggedIn && auth.currentUser.uid === post.author.id &&
+                      (<button onClick={() => deletePost(post.id)} className={styles.deletebtn}>
+                        <span className="material-symbols-outlined">
+                          delete
+                        </span>
+                      </button>)
+                    }
+                  </div>
+
+                  <div className={styles.text}>{post.content}</div>
+                  <div className={styles.by}>
+                    <img className={styles.logo} src={post.image} alt="post" />
+                    <span className={styles.author}> {post.author.name}</span>
+                    <span className={styles.date}> {post.date}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-
-          // <div className='post'>
-          //   <div className='post-title'>
-          //     <div className='title'>
-          //       <h1>{post.title}</h1>
-          //     </div>
-          //   </div>
-          //   <div className='post-content'>{post.content}</div>
-          //   <br></br>
-          //   <h3>@{post.author.name}</h3>
-          //   <br></br>
-          // </div>
-
-        })}
-      </div>
+            )
+          })}
+        </div>
+      }
     </>
   );
 }
