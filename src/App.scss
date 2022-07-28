@@ -16,7 +16,13 @@ nav {
 }
 
 .left-links{
-  flex:1 1 200px;
+  flex: 1;
+  text-decoration: none;
+  color: #fff;
+}
+
+.right-links{
+  flex-direction: row;
   text-decoration: none;
   color: #fff;
 }
@@ -37,9 +43,35 @@ a:hover { color:rgb(0, 208, 255); }
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-  // padding: 0.75rem;
-  // text-decoration: none;
-  // font-weight: 400;
-  // color: rgb(255, 255, 255);
-  // background-color: #000000;
+}
+
+.signout:hover {
+  color: rgb(0, 208, 255);
+}
+
+.mobile{
+  display: none;
+}
+
+// responsive nav bar for mobile devices (smaller than 768px) 
+@media screen and (max-width: 500px) {
+  nav {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .right-links {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .right-links-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

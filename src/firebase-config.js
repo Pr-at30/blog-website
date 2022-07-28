@@ -10,6 +10,7 @@ const firebaseConfig = {
   // messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   // appId: process.env.REACT_APP_APP_ID,
   // measurementId: process.env.REACT_APP_MEASUREMENT_ID
+  
   apiKey: "AIzaSyBiE_XXEwsOMP8_TYl3N82NseIrCGeLEZU",
   authDomain: "blog-website-e4b3f.firebaseapp.com",
   projectId: "blog-website-e4b3f",

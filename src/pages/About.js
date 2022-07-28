@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer'
 import styles from './About.module.scss'
 
 // Work pending on this page
@@ -6,9 +7,7 @@ import styles from './About.module.scss'
 function About() {
   return (
     <>
-      <footer>
-        <div className={styles.footer}>&copy; Developed by Pratyush Kumar Jena </div>
-      </footer>
+      <Footer />
     </>
   )
 }

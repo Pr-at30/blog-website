@@ -5,78 +5,6 @@ homePage {
   padding: 30px;
 }
 
-.cards {
-  display: flex;
-}
-
-h2 {
-  margin: 1rem 1rem 1rem 0rem;
-}
-
-.card {
-  margin: 1.5rem auto;
-  width: 75vw;
-  background: #dce2fe;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-
-  .content {
-    padding: 20px 30px;
-  }
-}
-
-// Style author name
-.author {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-// Style small logo image
-.logo {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  padding: 0.5rem;
-  margin-right: 0.1rem;
-}
-
-.by {
-  margin: 1rem 0rem 0rem -0.5rem;
-  display: flex;
-  align-items: center;
-  // justify-content: center;
-}
-
-// Style dae and time
-.date {
-  margin-left: auto;
-  font-size: 0.8rem;
-  color: #999;
-}
-
-.top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-// Remove style from button
-.deletebtn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 1rem;
-  border-radius: 5px;
-  background: #333;
-  color: #fff;
-}
-
-// Keep the text within the card
-.text {
-  width: auto;
-  word-wrap: break-word;
-}
-
 .noPosts {
   // Center the text in the view when there are no posts
   text-align: center;
@@ -88,3 +16,4 @@ h2 {
   // increase size
   font-size: 4rem;
 }
+

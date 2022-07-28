@@ -4,10 +4,13 @@ import { addDoc, collection } from 'firebase/firestore'
 import { useEffect } from 'react';
 import { db, auth } from '../firebase-config'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CreatePost({ title, setTitle, content, setContent, isLoggedIn }) {
 
   let navigate = useNavigate();
+
   // Prevent the user from accessing the create post page if they are not logged in
   useEffect(() => {
     if (!isLoggedIn) {
@@ -39,6 +42,9 @@ function CreatePost({ title, setTitle, content, setContent, isLoggedIn }) {
 
     // Navigate to the home page
     navigate('/');
+
+    // Show a toast message
+    toast.dark("Post created");
   }
 
   return (
@@ -56,18 +62,21 @@ function CreatePost({ title, setTitle, content, setContent, isLoggedIn }) {
             size={30}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required />
+            required
+          />
         </div>
 
         <div className={styles['form-input-material']}>
           <label className={styles.head}>Body</label>
           <br></br>
-          <textarea placeholder="Content..."
+          <textarea
+            placeholder="Content..."
             rows={5}
             cols={50}
             className={styles['form-input-material']}
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            required
           />
         </div>
 

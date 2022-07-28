@@ -53,3 +53,15 @@
     border-radius: 10px;
 }
 
+@media screen and (max-width: 600px) {
+  .login-form {
+    scale: 1;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login-form {
+    scale: 0.8;
+  }
+}
+ 
