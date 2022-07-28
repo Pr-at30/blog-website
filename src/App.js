@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import CreatePost from './pages/CreatePost';
-import About from './pages/About';
+import Footer from './components/Footer';
 import PageNotFound from './pages/PageNotFound';
 import { auth } from './firebase-config';
 import { signOut } from 'firebase/auth';
@@ -41,7 +41,7 @@ function App() {
           progress: undefined,
         });
         // redirect to login page
-        window.location.pathname = '/login';   // Can't use use navigate here because it's outside of the React Router
+        // window.location.pathname = '/login';   // Can't use use navigate here because it's outside of the React Router
       })
   }
 
@@ -59,7 +59,6 @@ function App() {
               <button className="signout" onClick={handleSignOut}>Sign Out</button>
               :
               <Link to="/login">Login</Link>}
-            <Link to="/about">About</Link>
           </div>
 
           <div className='mobile'>
@@ -69,7 +68,6 @@ function App() {
               <button className="signout" onClick={handleSignOut}>Sign Out</button>
               :
               <Link to="/login">Login</Link>}
-            <Link to="/about">About</Link>
           </div>
           </div>
         </nav>
@@ -95,10 +93,10 @@ function App() {
               setIsLoggedIn={setIsLoggedIn}
             />} />
 
-          <Route path="/about" element={<About />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
+      <Footer />
     </>
   );
 }

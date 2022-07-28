@@ -55,16 +55,29 @@ h2 {
 }
 
 // Remove style from button
-.deletebtn, .bookmarkbtn {
+.deletebtn,
+.bookmarkbtn {
   display: inline-block;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0rem;
   border-radius: 5px;
-  background: #333;
-  color: #fff;
+  background: #dce2fe;
+  color: #333;
   font-size: 1rem;
   scale: 0.9;
+  border: none;
 }
+
+.deletebtn:hover{
+    background: rgb(255, 0, 0);
+    color: #fff;
+}
+.bookmarkbtn:hover{
+    background: #333;
+    color: #fff;
+}
+
+// Clicking on the button will change the color of the button
 
 // Keep the text within the card
 .text {
