@@ -28,7 +28,8 @@ nav {
 }
 
 a{
-  padding: 0.75rem;
+  padding: 1.5rem;
+  margin-right: 1.5rem;
   text-decoration: none;
   font-weight: 500;
   color: #fff;
@@ -51,6 +52,11 @@ a:hover { color: #dce2fe; }
 
 .mobile{
   display: none;
+}
+
+.material-symbols-outlined{
+  // font-size: 1.6rem;
+  scale: 1.5; 
 }
 
 // responsive nav bar for mobile devices (smaller than 768px) 

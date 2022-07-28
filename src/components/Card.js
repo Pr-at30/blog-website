@@ -23,7 +23,7 @@ function Card({ post, isLoggedIn, deletePost, bookmarkPost }) {
               {isLoggedIn && 
                 (<button onClick={() => bookmarkPost(post.id)} className={styles.bookmarkbtn}>
                   <span className="material-symbols-outlined">
-                    bookmark
+                    bookmark_add
                   </span>
                 </button>)
               }

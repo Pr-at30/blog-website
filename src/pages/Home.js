@@ -47,18 +47,24 @@ function Home({ isLoggedIn }) {
       localStorage.removeItem(id);
     }
     setChkDel(!chkDel);
-    toast.dark("Post deleted");
+    toast.dark("Post deleted", {
+      position: "bottom-right",
+    });
   }
 
   // Bookmark a post
   const bookmarkPost = async (id) => {
     if (localStorage.getItem(id) === "bookmarked") {
       localStorage.removeItem(id);
-      toast.dark("Post removed from bookmarks");
+      toast.dark("Post removed from bookmarks", {
+        position: "bottom-right",
+      });
     }
     else { 
       localStorage.setItem(id, "bookmarked");
-      toast.dark("Post bookmarked");
+      toast.dark("Post bookmarked", {
+        position: "bottom-right",
+      });
     }
   }
 

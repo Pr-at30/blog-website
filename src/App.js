@@ -12,7 +12,6 @@ import { signOut } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 function App() {
 
   // state for isLoggedIn
@@ -54,21 +53,35 @@ function App() {
             <Link to="/">Blog Site</Link>
           </div>
           <div className='right-links'>
-            {isLoggedIn && <Link to="/createpost">Create Post</Link>}
+            {isLoggedIn && <Link to="/createpost">
+              <span className="material-symbols-outlined">
+                post_add
+              </span>
+            </Link>}
             {isLoggedIn ?
-              <button className="signout" onClick={handleSignOut}>Sign Out</button>
+              <button className="signout" onClick={handleSignOut}><span className="material-symbols-outlined">
+                logout
+              </span></button>
               :
-              <Link to="/login">Login</Link>}
+              <Link to="/login"><span className="material-symbols-outlined">
+                login
+              </span></Link>}
           </div>
 
           <div className='mobile'>
-          <div className='right-links-mobile'>
-            {isLoggedIn && <Link to="/createpost">Create Post</Link>}
-            {isLoggedIn ?
-              <button className="signout" onClick={handleSignOut}>Sign Out</button>
-              :
-              <Link to="/login">Login</Link>}
-          </div>
+            <div className='right-links-mobile'>
+              {isLoggedIn && <Link to="/createpost"><span class="material-symbols-outlined">
+                post_add
+              </span></Link>}
+              {isLoggedIn ?
+                <button className="signout" onClick={handleSignOut}><span className="material-symbols-outlined">
+                  logout
+                </span></button>
+                :
+                <Link to="/login"><span className="material-symbols-outlined">
+                  login
+                </span></Link>}
+            </div>
           </div>
         </nav>
 
