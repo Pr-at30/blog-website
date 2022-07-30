@@ -23,7 +23,7 @@ function Home({ isLoggedIn }) {
     setIsLoading(true);
     const getPosts = async () => {
       const posts = await getDocs(postsCollectionRef);
-      console.log(posts);
+      // console.log(posts);
       setPostsList(posts.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
